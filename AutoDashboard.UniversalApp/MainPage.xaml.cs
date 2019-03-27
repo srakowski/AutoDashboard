@@ -37,7 +37,7 @@ namespace AutoDashboard.UniversalApp
         {
             while (true)
             {
-                var rpm = await _autoReader.GetRpm();
+                var rpm = await _autoReader.Get<Rpm>();
                 rpmTextBlock.Text = rpm.Value.ToString();
                 radialGaugeControl.Value = rpm.Value;
                 await Task.Delay(100);

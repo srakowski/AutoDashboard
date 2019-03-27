@@ -1,13 +1,12 @@
-﻿using System;
-using System.Diagnostics;
+﻿using AutoDashboard.UniversalApp.Models;
+using System;
 using System.Threading.Tasks;
-using AutoDashboard.UniversalApp.Models;
 
 namespace AutoDashboard.UniversalApp.AutoReaders
 {
-    class SimulatedAutoReader : IAutoReader
+    public class SimulatedAutoReader : IAutoReader
     {
-        private bool _shutdown;
+        private bool _isRunning;
         private double _rpm;
 
         public SimulatedAutoReader(double rpm = 0)
@@ -15,9 +14,19 @@ namespace AutoDashboard.UniversalApp.AutoReaders
             _rpm = rpm;
         }
 
-        public Task<Rpm> GetRpm()
+        public Task<T> Get<T>() where T : IAutoReading
         {
-            return Task.FromResult(new Rpm((int)_rpm));
+            if (!_isRunning)
+            {
+                throw new InvalidOperationException("you must call Start before requesting");
+            }
+
+            if (typeof(T) == typeof(Rpm))
+            {
+                return Task.FromResult(new Rpm(0)) as Task<T>;
+            }
+
+            return Task.FromResult(new FuelLevel(0)) as Task<T>;
         }
 
         // 0 -> 9 scalar x 1000 == targetRpm
@@ -25,13 +34,14 @@ namespace AutoDashboard.UniversalApp.AutoReaders
 
         public Task Start()
         {
+            _isRunning = true;
             return Task.Factory.StartNew(Run);
         }
 
         private void Run()
         {
             var start = DateTime.UtcNow;
-            while (!_shutdown)
+            while (_isRunning)
             {
                 var now = DateTime.UtcNow;
                 var delta = now - start;
@@ -55,7 +65,7 @@ namespace AutoDashboard.UniversalApp.AutoReaders
 
         public void Stop()
         {
-            _shutdown = true;
+            _isRunning = false;
         }
     }
 }

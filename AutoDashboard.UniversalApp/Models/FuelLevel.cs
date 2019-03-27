@@ -1,8 +1,8 @@
 ﻿namespace AutoDashboard.UniversalApp.Models
 {
-    public class Rpm : IAutoReading
+    public class FuelLevel : IAutoReading
     {
-        public Rpm(int value)
+        public FuelLevel(int value)
         {
             Value = value;
         }

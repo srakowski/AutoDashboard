@@ -2,8 +2,8 @@
 
 namespace AutoDashboard.UniversalApp.Models
 {
-    interface IAutoReader
+    public interface IAutoReader
     {
-        Task<Rpm> GetRpm();
+        Task<T> Get<T>() where T : IAutoReading;
     }
 }
