@@ -23,7 +23,7 @@ namespace AutoDashboard.UniversalApp.AutoReaders
 
             if (typeof(T) == typeof(Rpm))
             {
-                return Task.FromResult(new Rpm(0)) as Task<T>;
+                return Task.FromResult(new Rpm((int)_rpm)) as Task<T>;
             }
 
             return Task.FromResult(new FuelLevel(0)) as Task<T>;

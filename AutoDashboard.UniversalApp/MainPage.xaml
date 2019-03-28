@@ -18,15 +18,14 @@
             Start
         </Button>
 
-        <controls:RadialGauge x:Name="radialGaugeControl" Value="0" Minimum="0" 
-            Width="400"
+        <controls:RadialGauge x:Name="radialGaugeControl" Minimum="0" 
+            Width="400" Value="{Binding Rpm}"
 	        Maximum="10000" TickSpacing="1000" ScaleWidth="26" Unit="RPMs" TickBrush="Gainsboro"
 	        ScaleTickBrush="{ThemeResource ApplicationPageBackgroundThemeBrush}"
 	        NeedleWidth="5" TickLength="18">
         </controls:RadialGauge>
-        
+
         <Slider Maximum="10" ValueChanged="Slider_ValueChanged"></Slider>
 
-        
     </StackPanel>
 </Page>
