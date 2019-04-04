@@ -16,7 +16,9 @@ namespace AutoDashboard.UniversalApp
         {
             this.InitializeComponent();
             _simulator = new SimulatedAutoReader();
+
             this.DataContext = _vm = new DashboardViewModel(_simulator);
+            //this.configuration.DataContext = new ConfigurationViewModel();
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
@@ -37,5 +39,20 @@ namespace AutoDashboard.UniversalApp
         {
             _simulator.Pedal = (int)e.NewValue;
         }
+
+
+
+        // TODO: remove
+        //private async void PingButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    //pingResponse.Text = "";
+        //    //pingResponse.Text = await ExternalSimulatorAutoReader.Ping("ping");
+        //}
+
+        //private async void SingButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    singResponse.Text = "";
+        //    singResponse.Text = await ExternalSimulatorAutoReader.Ping("sing");
+        //}
     }
 }

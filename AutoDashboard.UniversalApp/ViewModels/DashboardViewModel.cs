@@ -10,12 +10,13 @@ namespace AutoDashboard.UniversalApp.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
 
         private int _rpms;
-        private readonly IAutoReader _reader;
 
         public DashboardViewModel(IAutoReader reader)
         {
-            _reader = reader;
+            AutoReader = reader;
         }
+
+        public IAutoReader AutoReader { get; set; }
 
         public int Rpm
         {
@@ -31,7 +32,7 @@ namespace AutoDashboard.UniversalApp.ViewModels
         {
             try
             {
-                Rpm = (await _reader.Get<Rpm>()).Value;
+                Rpm = (await AutoReader.Get<Rpm>())?.Value ?? 0;
             }
             catch (Exception ex)
             {
