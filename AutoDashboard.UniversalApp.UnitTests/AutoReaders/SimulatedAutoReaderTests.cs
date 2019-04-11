@@ -1,5 +1,6 @@
 ﻿using AutoDashboard.UniversalApp.AutoReaders;
 using AutoDashboard.UniversalApp.Models;
+using AutoDashboard.UniversalApp.Models.AutoReadings;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Threading.Tasks;

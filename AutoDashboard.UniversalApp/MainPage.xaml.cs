@@ -17,7 +17,7 @@ namespace AutoDashboard.UniversalApp
             this.InitializeComponent();
             _simulator = new SimulatedAutoReader();
 
-            this.DataContext = _vm = new DashboardViewModel(_simulator);
+            this.DataContext = _vm = new DashboardViewModel(_simulator, new Services.NhtsaVehicleInfoService());
             //this.configuration.DataContext = new ConfigurationViewModel();
         }
 
@@ -43,16 +43,16 @@ namespace AutoDashboard.UniversalApp
 
 
         // TODO: remove
-        //private async void PingButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //    //pingResponse.Text = "";
-        //    //pingResponse.Text = await ExternalSimulatorAutoReader.Ping("ping");
-        //}
+        private async void PingButton_Click(object sender, RoutedEventArgs e)
+        {
+            pingResponse.Text = "";
+            pingResponse.Text = await ExternalSimulatorAutoReader.Ping("ping");
+        }
 
-        //private async void SingButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //    singResponse.Text = "";
-        //    singResponse.Text = await ExternalSimulatorAutoReader.Ping("sing");
-        //}
+        private async void SingButton_Click(object sender, RoutedEventArgs e)
+        {
+            singResponse.Text = "";
+            singResponse.Text = await ExternalSimulatorAutoReader.Ping("sing");
+        }
     }
 }

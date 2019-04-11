@@ -1,4 +1,5 @@
-﻿using AutoDashboard.UniversalApp.ViewModels;
+﻿using AutoDashboard.UniversalApp.Models.AutoReadings;
+using AutoDashboard.UniversalApp.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
 
@@ -12,7 +13,7 @@ namespace AutoDashboard.UniversalApp.UnitTests.ViewModels
         {
             var subject = new DashboardViewModel(new MockCarReader
             {
-                RpmResult = new Models.Rpm(23)
+                RpmResult = new Rpm(23)
             });
 
             await subject.Update();

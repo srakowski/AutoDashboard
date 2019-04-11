@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using AutoDashboard.UniversalApp.Models;
+using AutoDashboard.UniversalApp.Models.AutoReadings;
 
 namespace AutoDashboard.UniversalApp.UnitTests
 {

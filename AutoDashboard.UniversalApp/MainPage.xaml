@@ -28,21 +28,26 @@
         </Button>
         <Slider Maximum="10" ValueChanged="Slider_ValueChanged"></Slider>
 
-        <ContentControl Name="configuration">
+        <TextBlock Text="{Binding VinNumber}"></TextBlock>
+        <TextBlock Text="{Binding ModelYear}"></TextBlock>
+        <TextBlock Text="{Binding Make}"></TextBlock>
+        <TextBlock Text="{Binding Model}"></TextBlock>
+        
+        <!--<ContentControl Name="configuration">
             <StackPanel>
                 <ComboBox ItemsSource="{Binding Readers}"
                           SelectedItem="{Binding SelectedReader}">
                 </ComboBox>
                 <Button Command="{Binding UseReader}">Use</Button>
             </StackPanel>
-        </ContentControl>
+        </ContentControl>-->
         
 
-        <!--<Button Name="pingButton" Click="PingButton_Click">Ping</Button>
+        <Button Name="pingButton" Click="PingButton_Click">Ping</Button>
         <TextBlock Name="pingResponse"></TextBlock>
 
         <Button Name="singButton" Click="SingButton_Click">Sing</Button>
-        <TextBlock Name="singResponse"></TextBlock>-->
+        <TextBlock Name="singResponse"></TextBlock>
 
     </StackPanel>
 </Page>

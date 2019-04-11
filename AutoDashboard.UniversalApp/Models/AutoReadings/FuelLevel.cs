@@ -1,4 +1,4 @@
-﻿namespace AutoDashboard.UniversalApp.Models
+﻿namespace AutoDashboard.UniversalApp.Models.AutoReadings
 {
     public class FuelLevel : IAutoReading
     {

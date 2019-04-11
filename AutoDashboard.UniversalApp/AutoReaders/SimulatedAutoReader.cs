@@ -1,11 +1,16 @@
 ﻿using AutoDashboard.UniversalApp.Models;
+using AutoDashboard.UniversalApp.Models.AutoReadings;
 using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace AutoDashboard.UniversalApp.AutoReaders
 {
     public class SimulatedAutoReader : IAutoReader
     {
+        private static HttpClient _client = new HttpClient();
+
+        private string _vin;
         private bool _isRunning;
         private double _rpm;
 
@@ -25,6 +30,10 @@ namespace AutoDashboard.UniversalApp.AutoReaders
             {
                 return Task.FromResult(new Rpm((int)_rpm)) as Task<T>;
             }
+            else if (typeof(T) == typeof(VinNumber))
+            {
+                return Task.FromResult(new VinNumber(_vin)) as Task<T>;
+            }
 
             return Task.FromResult(new FuelLevel(0)) as Task<T>;
         }
@@ -32,10 +41,16 @@ namespace AutoDashboard.UniversalApp.AutoReaders
         // 0 -> 9 scalar x 1000 == targetRpm
         public int Pedal { get; set; }
 
-        public Task Start()
+        public async Task Start()
         {
             _isRunning = true;
-            return Task.Factory.StartNew(Run);
+
+            var response = await _client.GetAsync("http://randomvin.com/getvin.php?type=real");
+            _vin = response.IsSuccessStatusCode
+                ? (await response.Content.ReadAsStringAsync())
+                : "5UXWX7C5*BA";
+
+            await Task.Factory.StartNew(Run);
         }
 
         private void Run()
