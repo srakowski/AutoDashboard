@@ -86,7 +86,9 @@ namespace OBD.NET.Communication
         {
             var services = await Windows.Devices.Enumeration.DeviceInformation
                 .FindAllAsync(RfcommDeviceService.GetDeviceSelector(RfcommServiceId.SerialPort));
-            
+
+            var names = services.Select(s => s.Name).ToArray();
+
             //use first serial service
             if (services.Count > 0)
             {

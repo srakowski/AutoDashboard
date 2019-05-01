@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using AutoDashboard.UniversalApp.Models;
 using AutoDashboard.UniversalApp.Models.AutoReadings;
@@ -15,12 +16,13 @@ namespace AutoDashboard.UniversalApp.AutoReaders
         private bool _isRunning = false;
 
         private int _rpmValue;
+        private int _engineOilTemp;
 
         public async Task Initialize()
         {
             if (_isRunning) return;
 
-            _connection = new BluetoothSerialConnection();
+            _connection = new BluetoothSerialConnection("SPP");
             _dev = new ELM327(_connection);
             await _dev.InitializeAsync();
             _isRunning = true;
@@ -41,7 +43,16 @@ namespace AutoDashboard.UniversalApp.AutoReaders
                 return;
 
             var data = await _dev.RequestDataAsync<EngineRPM>();
-            _rpmValue = data.Rpm;
+            if (data != null)
+            {
+                _rpmValue = data.Rpm;
+            }
+
+            var oilTemp = await _dev.RequestDataAsync<EngineFuelRate>();
+            if (oilTemp != null)
+            {
+                Debug.WriteLine(oilTemp.ToString());
+            }
         }
 
         public Task<T> Get<T>() where T : IAutoReading
