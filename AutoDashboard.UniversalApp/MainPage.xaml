@@ -43,11 +43,11 @@
         </ContentControl>-->
         
 
-        <Button Name="pingButton" Click="PingButton_Click">Ping</Button>
+        <!--<Button Name="pingButton" Click="PingButton_Click">Ping</Button>
         <TextBlock Name="pingResponse"></TextBlock>
 
         <Button Name="singButton" Click="SingButton_Click">Sing</Button>
-        <TextBlock Name="singResponse"></TextBlock>
+        <TextBlock Name="singResponse"></TextBlock>-->
 
     </StackPanel>
 </Page>

@@ -63,22 +63,22 @@ namespace AutoDashboard.UniversalApp.ViewModels
             try
             {
                 Rpm = (await AutoReader.Get<Rpm>())?.Value ?? 0;
-                var vin = (await AutoReader.Get<VinNumber>())?.Value ?? "ERROR";
-                if (vin != VinNumber)
-                {
-                    if (vin == null)
-                    {
-                        _vehicleInfo = null;
-                    }
-                    else
-                    {
-                        _vehicleInfo = await _vehicleInfoService.GetVehicleInfoByVin(vin);
-                    }
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Make)));
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Model)));
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ModelYear)));
-                }
-                VinNumber = vin;
+                //var vin = (await AutoReader.Get<VinNumber>())?.Value ?? "ERROR";
+                //if (vin != VinNumber)
+                //{
+                //    if (vin == null)
+                //    {
+                //        _vehicleInfo = null;
+                //    }
+                //    else
+                //    {
+                //        _vehicleInfo = await _vehicleInfoService.GetVehicleInfoByVin(vin);
+                //    }
+                //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Make)));
+                //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Model)));
+                //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ModelYear)));
+                //}
+                //VinNumber = vin;
             }
             catch (Exception ex)
             {
