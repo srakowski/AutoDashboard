@@ -173,6 +173,9 @@
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
       <Version>5.1.1</Version>
     </PackageReference>
+    <PackageReference Include="MvvmLightLibsStd10">
+      <Version>5.4.1.1</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OBD.NET.Common\OBD.NET.Common.csproj">

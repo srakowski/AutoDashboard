@@ -1,12 +1,13 @@
 ﻿using AutoDashboard.UniversalApp.Models;
 using AutoDashboard.UniversalApp.Models.AutoReadings;
+using GalaSoft.MvvmLight;
 using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
 namespace AutoDashboard.UniversalApp.ViewModels
 {
-    public class DashboardViewModel : INotifyPropertyChanged
+    public class DashboardViewModel : ViewModelBase
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -26,11 +27,7 @@ namespace AutoDashboard.UniversalApp.ViewModels
         public int Rpm
         {
             get => _rpms;
-            set
-            {
-                _rpms = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Rpm)));
-            }
+            set => Set(ref _rpms, value);
         }
 
         public string VinNumber
